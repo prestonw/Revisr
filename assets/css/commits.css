@@ -104,7 +104,21 @@ td.hash.column-hash {
 #revisr_settings th {
 	width: 290px;
 }
-
+.revisr-title-toggle {
+	padding: 5px;
+	margin-top: -30px;
+	position: relative;
+	top: 36px;
+	margin-right: 5px;
+	color: #666;
+	float: right;
+	cursor: pointer;
+}
+#revisr-commit-desc {
+	width: 100%;
+	margin-top: 10px;
+	display: none;
+}
 /* === Site5 === */
 #site5_wrapper {
 	width: 80px;

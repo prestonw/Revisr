@@ -45,6 +45,30 @@ jQuery(document).ready(function($) {
         security: pending_vars.ajax_nonce
     };
 
+    var textbox     = $('#title');
+    var textarea    = $('#revisr-commit-desc');
+    var expander    = $('<span id="revisr-expander" class="revisr-title-toggle octicon octicon-alignment-aligned-to"></span>');
+    var minifier    = $('<span id="revisr-minifier" class="revisr-title-toggle octicon octicon-alignment-align"></span>');
+
+
+    $('#title-prompt-text').before(expander);
+    $('#title-prompt-text').before(minifier);
+    $(minifier).hide();
+
+    $(document).on('click','#revisr-expander',function(){
+        $('#revisr-commit-desc').show();
+        $(expander).hide();
+        $(minifier).show();
+
+    });
+
+    $(document).on('click', '#revisr-minifier', function() {
+        $('#revisr-commit-desc').hide();
+        $(minifier).hide();
+        $(expander).show();
+
+    });
+
     $.post(ajaxurl, data, function(response) {
         document.getElementById('pending_files_result').innerHTML = response;
     });

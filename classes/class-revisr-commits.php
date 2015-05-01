@@ -324,10 +324,16 @@ class Revisr_Commits {
 		$output 		= revisr()->git->status();
 		$total_pending 	= count( $output );
 		$text 			= sprintf( __( 'There are <strong>%s</strong> untracked files that can be added to this commit.', 'revisr' ), $total_pending, revisr()->git->branch );
+
+		echo '<textarea id="revisr-commit-desc" name="commit_desc" spellcheck="true" autocomplete="off" rows="4" placeholder="An optional longer description for the commit can go here..."></textarea>';
+
 		echo "<br>" . $text . "<br><br>";
-		_e( 'Use the boxes below to select the files to include in this commit. Only files in the "Staged Files" section will be included.<br>Double-click files marked as "Modified" to view the changes to the file.<br><br>', 'revisr' );
-		if ( is_array( $output ) ) {
-				?>
+
+		if ( is_array( $output ) && 0 !== count( $output ) ) {
+
+			_e( 'Use the boxes below to select the files to include in this commit. Only files in the "Staged Files" section will be included.<br>Double-click files marked as "Modified" to view the changes to the file.<br><br>', 'revisr' );
+
+			?>
 				<!-- Staging -->
 				<div class="stage-container">
 					<p><strong><?php _e( 'Staged Files', 'revisr' ); ?></strong></p>

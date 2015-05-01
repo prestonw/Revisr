@@ -186,17 +186,32 @@ class Revisr_Git {
 	 * @access public
 	 * @param  string $message 		The message to use with the commit.
 	 * @param  string $callback 	The callback to run.
+	 * @param  string $description 	An optional long description of the commit.
 	 */
-	public function commit( $message, $callback = '' ) {
-		if ( is_user_logged_in() ) {
-			$current_user 	= wp_get_current_user();
-			$author 	 	= "$current_user->user_login <$current_user->user_email>";
-			$commit 		= $this->run( 'commit', array( '-m', $message, '--author', $author ), $callback );
-		} else {
-			$commit = $this->run( 'commit', array( '-m', $message ), $callback );
+	public function commit( $message, $callback = '', $description = '' ) {
+
+		// Initialize an empty array of arguements.
+		$args = array();
+
+		// Add the mandatory commit message.
+		$args[] = '-m';
+		$args[] = $message;
+
+		// Add the optional commit description if one exists.
+		if ( '' !== $description ) {
+			$args[] = '-m';
+			$args[] = $description;
 		}
 
-		return $commit;
+		// If the user is logged in, use their WordPress username and email address.
+		if ( is_user_logged_in() ) {
+			$current_user = wp_get_current_user();
+			$args[] = '--author';
+			$args[] = "$current_user->user_login <$current_user->user_email>";
+		}
+
+		// Run and return the result.
+		return $this->run( 'commit', $args, $callback );
 	}
 
 	/**
