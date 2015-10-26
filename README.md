@@ -1,4 +1,4 @@
-# Revisr #
+# Wordpress Git Revisr #
 **Contributors:** ExpandedFronts  
 **Tags:** revisr, git, git management, revision tracking, revision, backup, database, database backup, database plugin, deploy, commit, bitbucket, github, version control  
 **Requires at least:** 3.9.2  
